@@ -101,9 +101,3 @@
 		</plugins>
 	</build>
 </project>
-# Fix Controller names
-mv src/main/java/com/example/demo/controller/LocationService.java src/main/java/com/example/demo/controller/LocationController.java
-mv src/main/java/com/example/demo/controller/RouteOptimizationResult.java src/main/java/com/example/demo/controller/RouteOptimizationController.java
-
-# Fix Entity name typo
-mv src/main/java/com/example/demo/entity/RootOptimizationResult.java src/main/java/com/example/demo/entity/RouteOptimizationResult.java
