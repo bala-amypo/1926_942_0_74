@@ -6,66 +6,42 @@ import java.time.LocalDateTime;
 @Entity
 @Table(name = "route_optimization_results")
 public class RouteOptimizationResult {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @OneToOne(fetch = FetchType.LAZY)
+    
+    @ManyToOne
     @JoinColumn(name = "shipment_id")
     private Shipment shipment;
-
-    private double optimizedDistanceKm;
-
-    private double estimatedFuelUsageL;
-
-    @Column(updatable = false)
+    
+    private Double optimizedDistanceKm;
+    
+    private Double estimatedFuelUsageL;
+    
     private LocalDateTime generatedAt;
-
-    @PrePersist
-    protected void onCreate() {
-        generatedAt = LocalDateTime.now();
-    }
-
-    // Getters and Setters
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Shipment getShipment() {
-        return shipment;
-    }
-
-    public void setShipment(Shipment shipment) {
+    
+    public RouteOptimizationResult() {}
+    
+    public RouteOptimizationResult(Shipment shipment, Double optimizedDistanceKm, Double estimatedFuelUsageL, LocalDateTime generatedAt) {
         this.shipment = shipment;
-    }
-
-    public double getOptimizedDistanceKm() {
-        return optimizedDistanceKm;
-    }
-
-    public void setOptimizedDistanceKm(double optimizedDistanceKm) {
         this.optimizedDistanceKm = optimizedDistanceKm;
-    }
-
-    public double getEstimatedFuelUsageL() {
-        return estimatedFuelUsageL;
-    }
-
-    public void setEstimatedFuelUsageL(double estimatedFuelUsageL) {
         this.estimatedFuelUsageL = estimatedFuelUsageL;
-    }
-
-    public LocalDateTime getGeneratedAt() {
-        return generatedAt;
-    }
-
-    public void setGeneratedAt(LocalDateTime generatedAt) {
         this.generatedAt = generatedAt;
     }
+    
+    // Getters and Setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    
+    public Shipment getShipment() { return shipment; }
+    public void setShipment(Shipment shipment) { this.shipment = shipment; }
+    
+    public Double getOptimizedDistanceKm() { return optimizedDistanceKm; }
+    public void setOptimizedDistanceKm(Double optimizedDistanceKm) { this.optimizedDistanceKm = optimizedDistanceKm; }
+    
+    public Double getEstimatedFuelUsageL() { return estimatedFuelUsageL; }
+    public void setEstimatedFuelUsageL(Double estimatedFuelUsageL) { this.estimatedFuelUsageL = estimatedFuelUsageL; }
+    
+    public LocalDateTime getGeneratedAt() { return generatedAt; }
+    public void setGeneratedAt(LocalDateTime generatedAt) { this.generatedAt = generatedAt; }
 }
